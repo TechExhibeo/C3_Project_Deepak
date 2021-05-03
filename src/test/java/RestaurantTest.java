@@ -5,6 +5,8 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -63,4 +65,30 @@ class RestaurantTest {
                 ()->restaurant.removeFromMenu("French fries"));
     }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    //<<<<<<<<<<<<<<<<Adding Features using TDD>>>>>>>>>>>>>>>>>>>>>
+    
+    //<<<<<<<<<<<<<Calculating Full Cart Total Cost>>>>>>>>>>>>>>>>>
+    @Test
+    public void calculating_total_cost_for_selected_items_in_menu() throws itemNotFoundException {
+        List<String> selectedItems = new ArrayList<String>();
+        selectedItems.add("Sweet corn soup");
+        selectedItems.add("Vegetable lasagne");
+        int totalCost = restaurant.selectedItemsCost(selectedItems);
+        assertEquals(388,totalCost);
+    }
+    //<<<<<<<<<<<<<Calculating Full Cart Total Cost>>>>>>>>>>>>>>>>>
+
+    //<<<<<<<<<<<<<Calculating Empty Cart Total Cost>>>>>>>>>>>>>>>>
+    @Test
+    public void calculating_total_cost_for_no_selected_items_in_menu_display_total_value_as_0() throws itemNotFoundException {
+        List<String> selectedItems = new ArrayList<String>();
+        // No Items Added added from Menu in this test so selectedItems.add("") not used here
+        int totalCost = restaurant.selectedItemsCost(selectedItems);
+        assertEquals(0,totalCost);
+    }
+    //<<<<<<<<<<<<<Calculating Empty Cart Total Cost>>>>>>>>>>>>>>>>
+
+    //<<<<<<<<<<<<<<<<Adding Features using TDD>>>>>>>>>>>>>>>>>>>>>
+
 }
